@@ -41,8 +41,8 @@ const finAdvisorCo = Object.create(null, {
     //         })
             
 
-    //     }
-    // },
+        }
+    },
     purchase: {
         enumerable: false,
         value: function (symbol, quantity, purchasePrice) {
@@ -78,6 +78,7 @@ const finAdvisorCo = Object.create(null, {
         }
     }
 })
+
 console.log("wholepiece", finAdvisorCo.portfolio);
 
 finAdvisorCo.purchase("facebook", 30, 50)
