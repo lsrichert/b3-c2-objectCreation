@@ -22,27 +22,52 @@ const finAdvisorCo = Object.create(null, {
                 transType: "start"}]
 
     },
-    worth: {
-        enumerable: false,
-        value: function (symbol, quantity, stockWorth) {
 
-            // this is Jisie's code for this function and I'm confused about this.
-    //         return this.poftfolio.reduce ( (accumulator, currentValue) => {
-    //             console.log("accumulator", accumulator, "currentValue", currentValue);
+            worth: {
+                enumerable: false,
+                value: function () {
 
-    //             if(currentValue.purchase){
-    //                 return accumulator += (currentValue.quantity * currentValue.price)
-    //                 { else {
-    //                     return accumulator _= (currentValue.quanitity * currentValue.price)
-    //                 }
-    //                 }, 0}
-
-    //             }
-    //         })
-            
-
-        }
+        // I was confused by Jisie's code for this so Adelaide shared the three ways to code this that she learned.
+        //____________________USING A FOR LOOP_________________________
+        //             let grandTotal = 0;
+        //             // When you invoke the worth() method, it should look at every transaction and calculate the advisor's net worth.
+        //             for(let i = 0; i < financialAdvisor.portfolio.length; i++){
+        //                 let total = financialAdvisor.portfolio[i].share * financialAdvisor.portfolio[i].price
+        //                 console.log("total", total)
+        //                 if (financialAdvisor.portfolio[i].purchase === true){
+        //                    grandTotal = grandTotal + total 
+        //                 } else {
+        //                     grandTotal = grandTotal - total
+        //                 }
+        //             }
+        //             console.log("grand total", grandTotal)
+        // //__________________________________USING THE 'FOR EACH' LOOP WITH FUNCTION INSIDE___________________
+        //             let grandTotal = 0;
+        //             financialAdvisor.portfolio.forEach(function(key){
+        //                 console.log("key", key)
+        //                 let total = key.share * key.price
+        //                 if (key.purchase === true){
+        //                    grandTotal = grandTotal + total 
+        //                 } else {
+        //                     grandTotal = grandTotal - total
+        //                 }
+        //             })
+        //             console.log("grand total", grandTotal)
+        //__________________________________USING THE 'FOR EACH' LOOP WITH FUNCTION OUTSIDE___________________
+                    let grandTotal = 0;
+                    let getNetWorth = function (key){
+                        let total = key.share * key.price
+                        if (key.purchase === true){
+                            grandTotal = grandTotal + total 
+                        } else {
+                            grandTotal = grandTotal - total
+                        }
+                    }
+                    financialAdvisor.portfolio.forEach(getNetWorth)
+                    console.log("grand total", grandTotal)   
+                }
     },
+
     purchase: {
         enumerable: false,
         value: function (symbol, quantity, purchasePrice) {
